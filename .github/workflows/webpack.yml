@@ -32,8 +32,3 @@ jobs:
         name: main.js
         path: dist/main.js
         if-no-files-found: error
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v3.0.1
-      with:
-        name: main.js
-        path: dist/main.js
