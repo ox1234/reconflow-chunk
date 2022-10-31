@@ -26,9 +26,9 @@ jobs:
       run: |
         npm install
         npm run-script webpack
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.1
+    - uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        name: main.js
-        path: dist/main.js
-        if-no-files-found: error
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        files: |
+          dist/main.js
