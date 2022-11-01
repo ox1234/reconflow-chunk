@@ -23,11 +23,11 @@ function main() {
             if (!fs.existsSync(str)) {
                 throw `${str} js file not exist`;
             }
-            let p = getASTTree(str).program;
+            let p = getASTTree(str);
             if (p == undefined) {
                 throw `${str} js file is not valid`;
             }
-            collectInfo(p)
+            console.log(JSON.stringify(collectInfo(p)))
         });
 
     program
