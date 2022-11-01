@@ -1,6 +1,6 @@
 import {infoScanResult} from "../basic/basic";
-import {stringify} from "querystring";
-import {Node} from "@babel/types";
+import {Node, File, StringLiteral} from "@babel/types";
+import {ParseResult} from '@babel/parser';
 import traverse from "@babel/traverse";
 import {
     email_regex,
@@ -13,7 +13,7 @@ import {
     domain_regex
 } from "../constant/reg";
 
-export function collectInfo(ast: Node) {
+export function collectInfo(ast: ParseResult<File>): infoScanResult {
     let info_scan_result: infoScanResult = {
         id_card_list: [],
         mobile_list: [],
@@ -39,7 +39,7 @@ export function collectInfo(ast: Node) {
         }
     })
 
-
+    return info_scan_result
 }
 
 function matchIDCard(content: string): string[] {
@@ -75,6 +75,9 @@ function matchURL(content: string): string[] {
 }
 
 function getMatchesArr(matches: RegExpMatchArray): string[] {
+    if (matches === null) {
+        return [];
+    }
     let res_set = new Set<string>;
     for (let m of matches) {
         res_set.add(m);
