@@ -28,14 +28,14 @@ export function collectInfo(ast: ParseResult<File>): infoScanResult {
     traverse(ast, {
         StringLiteral: path => {
             const content = path.node.extra.raw;
-            info_scan_result.id_card_list = matchIDCard(content);
-            info_scan_result.mobile_list = matchMobile(content);
-            info_scan_result.email_list = matchEmail(content);
-            info_scan_result.ip_addr_list = matchIPAddr(content);
-            info_scan_result.ip_port_list = matchIPPort(content);
-            info_scan_result.path_list = matchPath(content);
-            info_scan_result.domain_list = matchDomains(content);
-            info_scan_result.url_list = matchURL(content);
+            info_scan_result.id_card_list = info_scan_result.id_card_list.concat(matchIDCard(content));
+            info_scan_result.mobile_list = info_scan_result.mobile_list.concat(matchMobile(content));
+            info_scan_result.email_list = info_scan_result.email_list.concat(matchEmail(content));
+            info_scan_result.ip_addr_list = info_scan_result.ip_addr_list.concat(matchIPAddr(content));
+            info_scan_result.ip_port_list = info_scan_result.ip_port_list.concat(matchIPPort(content));
+            info_scan_result.path_list = info_scan_result.path_list.concat(matchPath(content));
+            info_scan_result.domain_list = info_scan_result.domain_list.concat(matchDomains(content));
+            info_scan_result.url_list = info_scan_result.url_list.concat(matchURL(content));
         }
     })
 
